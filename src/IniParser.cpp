@@ -48,7 +48,7 @@ std::vector<Token> IniParser::parse(std::filesystem::path const &path) {
             if (c == '[' || c == ']')
                 continue;
 
-            if (c == '#')
+            if (c == '#' || c == ';')
                 break;
 
             value += c;
@@ -61,8 +61,12 @@ std::vector<Token> IniParser::parse(std::filesystem::path const &path) {
         bool key = true;
         std::string k, v;
         for (auto const &c: line) {
-            if (c == ' ') continue;
-            if (c == '#') break;
+            // FIXME: Figure out how to properly handle spaces.
+            //        i.e. should we ignore all the spaces, or
+            //        only in keys? only in values?
+            // if (c == ' ') continue;
+            if (c == '#' || c == ';')
+                break;
             if (c == '=') {
                 key = false;
                 continue;
@@ -78,7 +82,7 @@ std::vector<Token> IniParser::parse(std::filesystem::path const &path) {
         if (line.empty())
             continue;
 
-        if (starts_with(line, '#'))
+        if (starts_with(line, '#') || starts_with(line, ';'))
             continue;
 
         if (starts_with(line, '['))

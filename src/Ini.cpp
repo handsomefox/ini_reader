@@ -1,11 +1,11 @@
 #include "Ini.h"
 
-Ini::Map Ini::parse_file(const std::filesystem::path &path) {
+Ini::ini_map Ini::parse_file(const std::filesystem::path &path) {
     auto tokens = IniParser::parse(path);
 
-    Map map;
+    ini_map map;
     std::string current_section = INI_DEFAULT_KEY;
-    IniValues iniValues;
+    section_values iniValues;
 
     for (auto const &token: tokens) {
         if (token.is_section()) {
@@ -20,7 +20,7 @@ Ini::Map Ini::parse_file(const std::filesystem::path &path) {
         if (token.is_key_property()) {
             auto k = token.key();
             auto v = token.value();
-            iniValues[k] = v;
+            iniValues[k] = ini_value(v);
         }
     }
     map[current_section] = iniValues;
