@@ -5,7 +5,7 @@
 
 
 int main() {
-    const std::filesystem::path filepath = R"(C:\Users\hands\CLionProjects\ini_reader\example.ini)";
+    const std::filesystem::path filepath = "example.ini";
 
     if (!exists(filepath)) {
         return -1;
@@ -14,10 +14,9 @@ int main() {
     auto parsed = Ini::parse_file(filepath);
 
     for (auto const&[k, v]: parsed) {
-        std::cout << "Key: " << k << std::endl;
-        std::cout << "Values: " << std::endl;
+        std::cout << "Section: " << k << std::endl;
         for (auto const&[k2, v2]: v) {
-            std::cout << "    [Key, Value]: " << " [" << k2 << "," << v2.as_str() << "]" << std::endl;
+            std::cout << "    [Key, Value]: " << " [" << k2 << ", " << v2.as_str() << "]" << std::endl;
         }
     }
 

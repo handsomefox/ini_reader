@@ -11,14 +11,10 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4b07de5d-ebea-4acd-b5c2-31119e370937" name="Changes" comment="Create Ini::ini_value to describe the value parsed from .ini file.&#10;&#10;Now, we store ini_value in a map instead of std::string, which allows for multiple conversions to different types and better UX (I think).&#10;&#10;Also, it now handles ';' comments as well and includes spaces in names/values. Not sure if it should, but it does for now.">
+    <list default="true" id="4b07de5d-ebea-4acd-b5c2-31119e370937" name="Changes" comment="Small improvements and better example in main().">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Ini.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Ini.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Ini.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/Ini.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/IniParser.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/ini_parser.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/IniParser.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/ini_parser.h" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -67,9 +63,9 @@
     <property name="structure.view.defaults.are.configured" value="true" />
   </component>
   <component name="RunManager">
-    <configuration default="true" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true">
+    <configuration default="true" type="CLionExternalRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true">
       <method v="2">
-        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+        <option name="CLION.EXTERNAL.BUILD" enabled="true" />
       </method>
     </configuration>
     <configuration name="ini_reader" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="ini_reader" TARGET_NAME="ini_reader" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="ini_reader" RUN_TARGET_NAME="ini_reader">
@@ -87,7 +83,8 @@
       <option name="presentableId" value="Default" />
       <updated>1648890269456</updated>
       <workItem from="1648890271144" duration="12744000" />
-      <workItem from="1648905404643" duration="609000" />
+      <workItem from="1648905404643" duration="885000" />
+      <workItem from="1648906318793" duration="110000" />
     </task>
     <task id="LOCAL-00001" summary="Restructure a bit.">
       <created>1648900171456</created>
@@ -110,7 +107,14 @@
       <option name="project" value="LOCAL" />
       <updated>1648903204653</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Small improvements and better example in main().">
+      <created>1648906068510</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1648906068510</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -131,6 +135,7 @@
     <MESSAGE value="Restructure a bit." />
     <MESSAGE value="Use std::optional instead of pointer in find_section()." />
     <MESSAGE value="Create Ini::ini_value to describe the value parsed from .ini file.&#10;&#10;Now, we store ini_value in a map instead of std::string, which allows for multiple conversions to different types and better UX (I think).&#10;&#10;Also, it now handles ';' comments as well and includes spaces in names/values. Not sure if it should, but it does for now." />
-    <option name="LAST_COMMIT_MESSAGE" value="Create Ini::ini_value to describe the value parsed from .ini file.&#10;&#10;Now, we store ini_value in a map instead of std::string, which allows for multiple conversions to different types and better UX (I think).&#10;&#10;Also, it now handles ';' comments as well and includes spaces in names/values. Not sure if it should, but it does for now." />
+    <MESSAGE value="Small improvements and better example in main()." />
+    <option name="LAST_COMMIT_MESSAGE" value="Small improvements and better example in main()." />
   </component>
 </project>
