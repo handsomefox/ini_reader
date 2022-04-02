@@ -16,15 +16,13 @@ int main() {
     std::string name = "Structure";
     auto result = Ini::find_section(parsed, name);
 
-    if (!result) {
+    if (!result.has_value()) {
         std::cout << "Section '" << name << "' not found." << std::endl;
         return -1;
     }
 
-    auto section = *result;
-
     std::string key = "ValuableInformation";
-    std::string value = section[key];
+    std::string value = result.value()[key];
 
     if (value.empty()) {
         std::cout << "Key '" << key << "' not found." << std::endl;

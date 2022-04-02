@@ -11,17 +11,11 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4b07de5d-ebea-4acd-b5c2-31119e370937" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+    <list default="true" id="4b07de5d-ebea-4acd-b5c2-31119e370937" name="Changes" comment="Restructure a bit.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Ini.cpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Ini.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/IniParser.cpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/IniParser.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Token.cpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Token.h" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/example.ini" beforeDir="false" afterPath="$PROJECT_DIR$/example.ini" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Ini.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/Ini.h" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -89,8 +83,16 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1648890269456</updated>
-      <workItem from="1648890271144" duration="9728000" />
+      <workItem from="1648890271144" duration="10480000" />
     </task>
+    <task id="LOCAL-00001" summary="Restructure a bit.">
+      <created>1648900171456</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1648900171456</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -106,5 +108,9 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Restructure a bit." />
+    <option name="LAST_COMMIT_MESSAGE" value="Restructure a bit." />
   </component>
 </project>

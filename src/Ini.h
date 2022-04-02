@@ -7,6 +7,7 @@
 #include <unordered_map>
 #include <sstream>
 #include <string>
+#include <optional>
 
 // Everything that doesn't use a different section can be found under this key.
 #define INI_DEFAULT_KEY "ABSOLUTELYRANDOMSTRINGNOBODYSHOULDEVERYUSE";
@@ -42,20 +43,28 @@ public:
     static Map parse_file(std::filesystem::path const &path);
 
     /// Used to fo find a section from .Ini file.
+    /// Example:
+    /// \code
+    /// auto result = find_section(map, "name");
+    /// if (!result.has_value) return -1;
+    /// auto map = result.value();
+    /// std::string key = "key";
+    /// std::string value = map[key];
+    /// \endcode
     /// \param map
     /// Map in which to search for name.
     /// \param name
     /// Section name to find inside of map, search with INI_DEFAULT_KEY as parameter
     /// for name if your key does not have a section.
     /// \return
-    /// Found section* or nullptr if nothing was found.
-    static const IniValues *find_section(Map const &map, std::string const &name) {
+    /// Found section wrapped in an std::optional or std::nullopt if nothing was found.
+    static std::optional<IniValues> find_section(Map const &map, std::string const &name) {
         auto found = map.find(name);
 
         if (found == map.end())
-            return nullptr;
+            return std::nullopt;
 
-        return &found->second;
+        return {found->second};
     }
 
 private:
