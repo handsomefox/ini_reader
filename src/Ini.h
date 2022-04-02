@@ -1,7 +1,7 @@
 #pragma once
 
 #include "Token.h"
-#include "IniParser.h"
+#include "ini_parser.h"
 
 #include <vector>
 #include <unordered_map>
@@ -100,7 +100,7 @@ public:
     /// File to parse.
     /// \return
     /// A Hash ini_map (string pointing to another map).
-    /// The other map (string to string) is all the values that belong to the section that was parsed.
+    /// The other map (string to ini_value) is all the values that belong to the section that was parsed.
     static ini_map parse_file(std::filesystem::path const &path);
 
     /// Used to fo find a section from .Ini file.

@@ -8,8 +8,8 @@ include_directories(src)
 set(SOURCES
         src/Ini.cpp
         src/Ini.h
-        src/IniParser.cpp
-        src/IniParser.h
+        src/ini_parser.cpp
+        src/ini_parser.h
         src/Token.cpp
         src/Token.h)
 

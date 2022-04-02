@@ -9,13 +9,13 @@
 #include "Token.h"
 
 
-class IniParser {
+class ini_parser {
 public:
     // Parses a file into a std::vector<Token>. Does not check if path exists.
     static std::vector<Token> parse(std::filesystem::path const &path);
 
 private:
-    IniParser() = default;
+    ini_parser() = default;
 
     // Reads a file into std::stringstream.
     static std::stringstream rd_file_to_ss(std::filesystem::path const &fpath);
