@@ -23,7 +23,7 @@ int main() {
 
     auto section = *result;
 
-    std::string key = "rq";
+    std::string key = "ValuableInformation";
     std::string value = section[key];
 
     if (value.empty()) {
