@@ -19,7 +19,7 @@ int main() {
     auto parsed = optional.value();
 
     for (auto const &[k, v]: parsed.Data()) {
-        std::cout << "SectionValues: " << k << std::endl;
+        std::cout << "Section: " << k << std::endl;
         for (auto const &[k2, v2]: v.Data()) {
             std::cout << "    [Key, Value]: " << " [" << k2 << ", " << v2.ToString() << "]" << std::endl;
         }
@@ -27,7 +27,7 @@ int main() {
 
     std::string name = "Display";
     if (!parsed.Exists(name)) {
-        std::cout << "SectionValues '" << name << "' not found." << std::endl;
+        std::cout << "Section '" << name << "' not found." << std::endl;
         return -1;
     }
 
