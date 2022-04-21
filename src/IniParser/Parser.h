@@ -8,8 +8,8 @@
 
 #include "Token.h"
 #include "Value.h"
-#include "Values.h"
-#include "Sections.h"
+#include "SectionValues.h"
+#include "Result.h"
 
 class Parser {
 public:
@@ -26,10 +26,8 @@ public:
     void SetPath(std::filesystem::path const &path);
 
 /// Parse() parses the path.
-///
-/// \return Sections if the path exists or is not empty
-/// \return or std::nullopt.
-    std::optional<Sections> Parse();
+/// \return std::nullopt if any errors are encountered, else returns Result.
+    std::optional<Result> Parse();
 
 private:
     std::filesystem::path _path;

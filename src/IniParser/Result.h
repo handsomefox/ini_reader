@@ -3,11 +3,11 @@
 #include <string>
 #include <unordered_map>
 
-#include "Value.h"
+#include "SectionValues.h"
 
-class Values {
+class Result {
 public:
-    Values() = default;
+    Result() = default;
 
     // Returns whether the storage is empty.
     bool Empty();
@@ -16,20 +16,21 @@ public:
     void Clear();
 
     // Assigns the value to the key.
-    void Set(const std::string &key, Value value);
+    void Set(const std::string &key, SectionValues values);
 
     // Returns the value from the key (throws if it does not exist).
-    Value Get(const std::string &);
+    SectionValues Get(const std::string &key);
 
     // Removes the value at the given key.
-    void Delete(const std::string &);
+    void Delete(const std::string &key);
 
     // Returns whether the value at the given key exists.
     bool Exists(const std::string &key);
 
     // Returns underlying data.
-    const std::unordered_map<std::string, Value> &Data() const;
+    std::unordered_map<std::string, SectionValues> const &Data();
+
 
 private:
-    std::unordered_map<std::string, Value> _values;
+    std::unordered_map<std::string, SectionValues> _sections;
 };

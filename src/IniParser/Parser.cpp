@@ -4,6 +4,7 @@
 #include <fstream>
 #include <utility>
 
+// Parses a line with a section
 static inline Token ParseSection(std::string const &line, std::string &section) {
     std::string value;
     for (auto const &c: line) {
@@ -25,6 +26,7 @@ static inline Token ParseSection(std::string const &line, std::string &section) 
     return Token(tokenData);
 }
 
+// Parses a line with a key property.
 static inline Token ParseKeyProperty(std::string const &line, std::string &section) {
     bool key = true;
     std::string k, v;
@@ -80,7 +82,7 @@ static inline std::vector<Token> Tokenize(std::filesystem::path const &path) {
     return tokens;
 }
 
-std::optional<Sections> Parser::Parse() {
+std::optional<Result> Parser::Parse() {
     auto tokens = Tokenize(_path);
 
     if (tokens.empty()) {
@@ -89,8 +91,8 @@ std::optional<Sections> Parser::Parse() {
 
     std::string current_section = DEFAULT_KEY;
 
-    Sections sections;
-    Values values;
+    Result sections;
+    SectionValues values;
 
     for (auto const &token: tokens) {
         if (token.IsSection()) {
