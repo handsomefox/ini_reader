@@ -3,15 +3,14 @@ project(ini_reader)
 
 set(CMAKE_CXX_STANDARD 17)
 
-include_directories(src)
+include_directories(src/IniParser)
 
 set(SOURCES
-        src/Ini.cpp
-        src/Ini.h
-        src/ini_parser.cpp
-        src/ini_parser.h
-        src/Token.cpp
-        src/Token.h)
+        src/IniParser/Parser.cpp
+        src/IniParser/Parser.h
+        src/IniParser/Token.cpp
+        src/IniParser/Token.h
+        src/IniParser/Value.cpp src/IniParser/Value.h src/IniParser/Utils.h src/IniParser/Sections.cpp src/IniParser/Sections.h src/IniParser/Values.cpp src/IniParser/Values.h)
 
 add_executable(ini_reader main.cpp ${SOURCES})
 

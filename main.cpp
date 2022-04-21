@@ -1,41 +1,46 @@
 #include <filesystem>
 #include <iostream>
 
-#include "Ini.h"
-
+#include "Parser.h"
 
 int main() {
     const std::filesystem::path filepath = "example.ini";
-
     if (!exists(filepath)) {
         return -1;
     }
 
-    auto parsed = Ini::parse_file(filepath);
+    auto parser = Parser(filepath);
 
-    for (auto const&[k, v]: parsed) {
-        std::cout << "Section: " << k << std::endl;
-        for (auto const&[k2, v2]: v) {
-            std::cout << "    [Key, Value]: " << " [" << k2 << ", " << v2.as_str() << "]" << std::endl;
+    auto optional = parser.Parse();
+    if (!optional.has_value()) {
+        std::cout << "Failed to parse the file: " << filepath.string() << '\n';
+        return -1;
+    }
+    auto parsed = optional.value();
+
+    for (auto const &[k, v]: parsed.Data()) {
+        std::cout << "Sections: " << k << std::endl;
+        for (auto const &[k2, v2]: v.Data()) {
+            std::cout << "    [Key, Value]: " << " [" << k2 << ", " << v2.ToString() << "]" << std::endl;
         }
     }
 
     std::string name = "Display";
-    auto result = Ini::find_section(parsed, name);
-
-    if (result.has_value()) {
-        std::string key = "fLightLODMaxStartFade";
-        auto value = result.value()[key];
-
-        if (value.empty()) {
-            std::cout << "Key '" << key << "' not found." << std::endl;
-            return -1;
-        }
-        std::cout << key << " = " << value.as_double() << std::endl;
-    } else {
-        std::cout << "Section '" << name << "' not found." << std::endl;
+    if (!parsed.Exists(name)) {
+        std::cout << "Sections '" << name << "' not found." << std::endl;
         return -1;
     }
+
+    auto section = parsed.Get(name);
+
+    std::string key = "fLightLODMaxStartFade";
+    if (!section.Exists(key)) {
+        std::cout << "Key '" << key << "' not found." << std::endl;
+        return -1;
+    }
+
+    auto value = section.Get(key);
+    std::cout << key << " = " << value.ToDouble() << std::endl;
 
     return 0;
 }
