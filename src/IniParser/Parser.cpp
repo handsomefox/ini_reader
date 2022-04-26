@@ -108,6 +108,7 @@ std::optional<Result> Parser::Parse()
 {
   if (_path.empty())
   {
+    _error_message = "Path: " + _path.string() + " is empty.";
     return std::nullopt;
   }
 
@@ -115,6 +116,7 @@ std::optional<Result> Parser::Parse()
 
   if (tokens.empty())
   {
+    _error_message = "File: " + _path.string() + " is not a valid .ini file.";
     return std::nullopt;
   }
 
@@ -163,4 +165,34 @@ void Parser::SetPath(const std::filesystem::path &path)
   _path = path;
 }
 
-Parser::Parser(std::filesystem::path path) : _path(std::move(path)) {}
+std::optional<Result> Parser::Parse(std::filesystem::path const &path)
+{
+  _error_message.clear();
+  if (!exists(path))
+  {
+    _error_message = "File: " + path.string() + " does not exist.";
+    return std::nullopt;
+  }
+
+  if (std::filesystem::is_directory(path))
+  {
+    _error_message = "Path: " + path.string() + " is a directory.";
+    return std::nullopt;
+  }
+
+  this->SetPath(path);
+  return this->Parse();
+}
+
+std::string Parser::Error()
+{
+  // FIXME: Maybe return an error as an enum value is instead.
+  if (_error_message.empty())
+  {
+    return "None";
+  }
+
+  auto msg = _error_message;
+  _error_message.clear();
+  return msg;
+}
