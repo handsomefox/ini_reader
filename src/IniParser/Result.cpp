@@ -12,7 +12,7 @@ void Result::Delete(const std::string &key)
   _sections.erase(key);
 }
 
-bool Result::Exists(const std::string &key)
+bool Result::Contains(const std::string &key)
 {
   return _sections.find(key) != _sections.end();
 }

@@ -17,7 +17,7 @@ void SectionValues::Delete(const std::string &key)
   _values.erase(key);
 }
 
-bool SectionValues::Exists(const std::string &key)
+bool SectionValues::Contains(const std::string &key)
 {
   return _values.find(key) != _values.end();
 }

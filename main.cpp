@@ -40,7 +40,7 @@ int main()
   // The section in this example is [Display]
   std::string name = "Display";
   // Just a sanity check.
-  if (!parsed_data.Exists(name))
+  if (!parsed_data.Contains(name))
   {
     std::cout << "Section '" << name << "' not found." << std::endl;
     return -1;
@@ -50,7 +50,7 @@ int main()
 
   // Example of how to get an exact key from the section
   std::string key = "fLightLODMaxStartFade";
-  if (!section.Exists(key))
+  if (!section.Contains(key))
   {
     std::cout << "Key '" << key << "' not found." << std::endl;
     return -1;

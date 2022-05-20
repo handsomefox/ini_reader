@@ -28,7 +28,7 @@ public:
   void Delete(const std::string &key);
 
   // Returns whether the value at the given key exists.
-  bool Exists(const std::string &key);
+  bool Contains(const std::string &key);
 
   // Returns underlying data.
   std::unordered_map<std::string, SectionValues> const &Data();
