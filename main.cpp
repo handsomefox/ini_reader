@@ -30,7 +30,7 @@ int main()
     std::cout << "Section: " << section_key << std::endl;
     for (auto const &[key, value] : section_value.Data())
     {
-      std::cout << "    [Key, Value]: "
+      std::cout << "\t[Key, Value]: "
                 << "[" << key << ", " << value
                 << "]" << std::endl;
     }
