@@ -1,7 +1,7 @@
 #include <filesystem>
 #include <iostream>
 
-#include "Parser.h"
+#include "IniParser/Parser.h"
 
 int main()
 {

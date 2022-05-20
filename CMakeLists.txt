@@ -3,7 +3,7 @@ project(ini_reader)
 
 set(CMAKE_CXX_STANDARD 17)
 
-include_directories(src/IniParser)
+include_directories(src)
 
 set(SOURCES
         src/IniParser/Parser.cpp
