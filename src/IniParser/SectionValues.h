@@ -12,25 +12,25 @@ public:
   SectionValues() = default;
 
   // Returns whether the storage is empty.
-  bool Empty();
+  bool is_empty();
 
   // Clears the storage.
-  void Clear();
+  void clear();
 
   // Assigns the value to the key.
-  void Set(const std::string &key, Value value);
+  void set_value(const std::string &key, Value value);
 
   // Returns the value from the key (throws if it does not exist).
-  Value Get(const std::string &);
+  Value get_value(const std::string &);
 
   // Removes the value at the given key.
-  void Delete(const std::string &);
+  void remove(const std::string &);
 
   // Returns whether the value at the given key exists.
-  bool Contains(const std::string &key);
+  bool contains(const std::string &key);
 
   // Returns underlying data.
-  const std::unordered_map<std::string, Value> &Data() const;
+  const std::unordered_map<std::string, Value> &data() const;
 
 private:
   std::unordered_map<std::string, Value> _values;

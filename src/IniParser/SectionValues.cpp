@@ -2,37 +2,37 @@
 
 #include <utility>
 
-void SectionValues::Set(const std::string &key, Value value)
+void SectionValues::set_value(const std::string &key, Value value)
 {
   _values[key] = std::move(value);
 }
 
-Value SectionValues::Get(const std::string &key)
+Value SectionValues::get_value(const std::string &key)
 {
   return _values.at(key);
 }
 
-void SectionValues::Delete(const std::string &key)
+void SectionValues::remove(const std::string &key)
 {
   _values.erase(key);
 }
 
-bool SectionValues::Contains(const std::string &key)
+bool SectionValues::contains(const std::string &key)
 {
   return _values.find(key) != _values.end();
 }
 
-const std::unordered_map<std::string, Value> &SectionValues::Data() const
+const std::unordered_map<std::string, Value> &SectionValues::data() const
 {
   return _values;
 }
 
-bool SectionValues::Empty()
+bool SectionValues::is_empty()
 {
   return _values.empty();
 }
 
-void SectionValues::Clear()
+void SectionValues::clear()
 {
   _values.clear();
 }

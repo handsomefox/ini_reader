@@ -3,17 +3,17 @@
 
 Value::Value(std::string value) : _data(std::move(value)) {}
 
-bool Value::Empty() const
+bool Value::is_empty() const
 {
   return _data.empty();
 }
 
-std::string Value::ToString() const
+std::string Value::to_string() const
 {
   return _data;
 }
 
-int32_t Value::ToInt32() const
+int32_t Value::to_i32() const
 {
   if (_data.empty())
   {
@@ -23,7 +23,7 @@ int32_t Value::ToInt32() const
   return std::stoi(_data);
 }
 
-float Value::ToFloat() const
+float Value::to_f32() const
 {
   if (_data.empty())
   {
@@ -33,7 +33,7 @@ float Value::ToFloat() const
   return std::stof(_data);
 }
 
-double Value::ToDouble() const
+double Value::to_f64() const
 {
   if (_data.empty())
   {
@@ -43,7 +43,7 @@ double Value::ToDouble() const
   return std::stod(_data);
 }
 
-bool Value::ToBool() const
+bool Value::to_bool() const
 {
   bool is_alpha = true;
 

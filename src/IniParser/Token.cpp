@@ -4,42 +4,42 @@
 
 Token::Token(Token::TokenData data) : _data(std::move(data)) {}
 
-Token::TokenType Token::Type() const
+Token::TokenType Token::type() const
 {
   return _data.type;
 }
 
-std::string Token::Key() const
+std::string Token::key() const
 {
   return _data.key;
 }
 
-std::string Token::Value() const
+std::string Token::value() const
 {
   return _data.value;
 }
 
-[[nodiscard]] bool Token::HasKey() const
+[[nodiscard]] bool Token::has_key() const
 {
   return _data.type == TokenType::KeyProperty;
 }
 
-[[nodiscard]] bool Token::IsSection() const
+[[nodiscard]] bool Token::is_section() const
 {
   return _data.type == TokenType::Section;
 }
 
-bool Token::IsKeyProperty() const
+bool Token::is_keyproperty() const
 {
   return _data.type == TokenType::KeyProperty;
 }
 
-[[nodiscard]] bool Token::IsComment() const
+[[nodiscard]] bool Token::is_comment() const
 {
   return _data.type == TokenType::Comment;
 }
 
-[[nodiscard]] bool Token::InsideOfSection() const
+[[nodiscard]] bool Token::is_inside_of_section() const
 {
   return _data.section.length() != 0;
 }

@@ -1,5 +1,6 @@
 #pragma once
 
+#include <optional>
 #include <string>
 #include <unordered_map>
 
@@ -10,29 +11,33 @@
 class Result
 {
 public:
-  Result() = default;
+  using _map = std::unordered_map<std::string, SectionValues>;
+
+  Result() = delete;
+
+  explicit Result(const _map &map);
 
   // Returns whether the storage is empty.
-  bool Empty();
+  bool is_empty();
 
   // Clears the storage.
-  void Clear();
+  void clear();
 
   // Assigns the value to the key.
-  void Set(const std::string &key, SectionValues values);
+  void set_value(const std::string &key, SectionValues values);
 
   // Returns the value from the key (throws if it does not exist).
-  SectionValues Get(const std::string &key);
+  SectionValues get_value(const std::string &key);
 
   // Removes the value at the given key.
-  void Delete(const std::string &key);
+  void remove(const std::string &key);
 
   // Returns whether the value at the given key exists.
-  bool Contains(const std::string &key);
+  bool contains(const std::string &key);
 
   // Returns underlying data.
-  std::unordered_map<std::string, SectionValues> const &Data();
+  _map const &data();
 
 private:
-  std::unordered_map<std::string, SectionValues> _sections;
+  _map _sections;
 };

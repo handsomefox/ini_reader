@@ -7,7 +7,7 @@
 #include <vector>
 
 // Reads a file into std::stringstream.
-inline static std::stringstream fileToSs(const std::filesystem::path &path)
+inline static std::stringstream path_to_stringstream(const std::filesystem::path &path)
 {
   std::ifstream ifs(path);
   std::stringstream buf;
@@ -16,7 +16,7 @@ inline static std::stringstream fileToSs(const std::filesystem::path &path)
 }
 
 // Extract lines from std::stringstream to std::vector<std::string>.
-inline static std::vector<std::string> extractLines(std::stringstream &ss)
+inline static std::vector<std::string> extract_lines(std::stringstream &ss)
 {
   std::vector<std::string> vec{};
 
@@ -30,7 +30,7 @@ inline static std::vector<std::string> extractLines(std::stringstream &ss)
 }
 
 // Checks if the string starts with a specified character.
-inline static bool startsWith(const std::string &str, const char c)
+inline static bool starts_with(const std::string &str, const char c)
 {
   if (str.length() == 0)
     return false;
@@ -39,7 +39,7 @@ inline static bool startsWith(const std::string &str, const char c)
 }
 
 // Checks if the string ends with a specified character.
-inline static bool endsWith(const std::string &str, const char c)
+inline static bool ends_with(const std::string &str, const char c)
 {
   if (str.length() == 0)
     return false;

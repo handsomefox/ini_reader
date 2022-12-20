@@ -28,28 +28,28 @@ public:
   explicit Token(TokenData);
 
   // Returns the Token type.
-  [[nodiscard]] Token::TokenType Type() const;
+  [[nodiscard]] Token::TokenType type() const;
 
   // Returns the Token key.
-  [[nodiscard]] std::string Key() const;
+  [[nodiscard]] std::string key() const;
 
   // Returns the Token value.
-  [[nodiscard]] std::string Value() const;
+  [[nodiscard]] std::string value() const;
 
   // Returns whether the Token has a Key.
-  [[nodiscard]] bool HasKey() const;
+  [[nodiscard]] bool has_key() const;
 
   // Returns whether the Token is a section.
-  [[nodiscard]] bool IsSection() const;
+  [[nodiscard]] bool is_section() const;
 
   // Returns whether the Token is a comment (not useful for now).
-  [[nodiscard]] bool IsComment() const;
+  [[nodiscard]] bool is_comment() const;
 
   // Returns whether the Token is a KeyProperty.
-  [[nodiscard]] bool IsKeyProperty() const;
+  [[nodiscard]] bool is_keyproperty() const;
 
   // Returns whether the Token is inside a section.
-  [[nodiscard]] bool InsideOfSection() const;
+  [[nodiscard]] bool is_inside_of_section() const;
 
 private:
   Token() = default;

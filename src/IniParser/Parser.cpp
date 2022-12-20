@@ -11,56 +11,43 @@ static inline Token ParseSection(std::string const &line, std::string &section)
   for (auto const &c : line)
   {
     if (c == '[' || c == ']')
-    {
       continue;
-    }
-
     if (c == '#' || c == ';')
-    {
       break;
-    }
 
     value += c;
   }
   section = value;
 
-  Token::TokenData tokenData{};
-  tokenData.type = Token::TokenType::Section;
-  tokenData.value = value;
+  Token::TokenData token_data;
+  token_data.type = Token::TokenType::Section;
+  token_data.value = value;
 
-  return Token(tokenData);
+  return Token(token_data);
 }
 
 // Parses a line with a key property.
 static inline Token ParseKeyProperty(std::string const &line, std::string &section)
 {
   bool key = true;
-  std::string k{}, v{};
-
+  std::string k, v;
   for (auto const &c : line)
   {
     if (c == '#' || c == ';')
-    {
       break;
-    }
 
     if (c == '=')
     {
       key = false;
       continue;
     }
-
     if (key)
-    {
       k += c;
-    }
     else
-    {
       v += c;
-    }
   }
 
-  Token::TokenData tokenData{};
+  Token::TokenData tokenData;
   tokenData.type = Token::TokenType::KeyProperty;
   tokenData.key = k;
   tokenData.value = v;
@@ -72,25 +59,20 @@ static inline Token ParseKeyProperty(std::string const &line, std::string &secti
 // Returns an std::vector<Token> created from the file.
 static inline std::vector<Token> Tokenize(std::filesystem::path const &path)
 {
-  std::stringstream ss = fileToSs(path);
-  std::vector<std::string> lines = extractLines(ss);
+  std::stringstream ss = path_to_stringstream(path);
+  std::vector<std::string> lines = extract_lines(ss);
 
-  std::vector<Token> tokens{};
-  std::string section{};
+  std::vector<Token> tokens;
+  std::string section;
 
   for (auto const &line : lines)
   {
     if (line.empty())
-    {
       continue;
-    }
-
-    if (startsWith(line, '#') || startsWith(line, ';'))
-    {
+    if (starts_with(line, '#') || starts_with(line, ';'))
       continue;
-    }
 
-    if (startsWith(line, '['))
+    if (starts_with(line, '['))
     {
       auto token = ParseSection(line, section);
       tokens.emplace_back(token);
@@ -104,30 +86,23 @@ static inline std::vector<Token> Tokenize(std::filesystem::path const &path)
   return tokens;
 }
 
-std::optional<Result> Parser::Parse()
+std::optional<Result> Parser::parse()
 {
   if (_path.empty())
-  {
-    _error_message = "Path: " + _path.string() + " is empty.";
     return std::nullopt;
-  }
 
   std::vector<Token> tokens = Tokenize(_path);
-
   if (tokens.empty())
-  {
-    _error_message = "File: " + _path.string() + " is not a valid .ini file.";
     return std::nullopt;
-  }
 
-  std::string current_section = DEFAULT_KEY;
-  Result sections;
+  std::string current_section = "KEY_NOT_FOUND";
   SectionValues values;
+  auto sections = Result::_map();
 
   for (auto const &token : tokens)
   {
     using tt = Token::TokenType;
-    switch (token.Type())
+    switch (token.type())
     {
     default:
     case tt::None:
@@ -135,64 +110,34 @@ std::optional<Result> Parser::Parse()
       break;
 
     case tt::Section:
-      if (!values.Empty())
+      if (!values.is_empty())
       {
-        sections.Set(current_section, values);
-        values.Clear();
+        sections[current_section] = values;
+        values.clear();
       }
-      current_section = token.Value();
+      current_section = token.value();
       break;
 
     case tt::KeyProperty:
-      auto k = token.Key();
-      auto v = token.Value();
-      values.Set(k, Value(v));
+      auto k = token.key();
+      auto v = token.value();
+      values.set_value(k, Value(v));
       break;
     }
   }
-  sections.Set(current_section, values);
+  sections[current_section] = values;
 
-  if (sections.Empty())
-  {
+  if (sections.empty())
     return std::nullopt;
-  }
 
-  return sections;
+  return Result(sections);
 }
 
-void Parser::SetPath(const std::filesystem::path &path)
+std::optional<Result> Parser::parse(std::filesystem::path const &path)
 {
-  _path = path;
-}
-
-std::optional<Result> Parser::Parse(std::filesystem::path const &path)
-{
-  _error_message.clear();
-  if (!exists(path))
-  {
-    _error_message = "File: " + path.string() + " does not exist.";
+  if (!exists(path) || std::filesystem::is_directory(path))
     return std::nullopt;
-  }
 
-  if (std::filesystem::is_directory(path))
-  {
-    _error_message = "Path: " + path.string() + " is a directory.";
-    return std::nullopt;
-  }
-
-  this->SetPath(path);
-  return this->Parse();
-}
-
-std::string Parser::Error()
-{
-  // FIXME: Maybe return an error as an enum value is instead.
-  if (_error_message.empty())
-  {
-    return "None";
-  }
-
-  auto msg = _error_message;
-  _error_message.clear();
-  return msg;
+  this->_path = path;
+  return this->parse();
 }
